@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import MySQLdb
 from urlparse import urlparse
-
+ 
 global db 
 global cursor
 global host 
@@ -42,7 +42,7 @@ def display():
         except MySQLdb.Error as e:
             print (e)        
 
-#insert multiple orderIDs
+#insert multiple orderIDs 
 def bypass():
     input = raw_input("Enter multiple orderIds you want to bypass, separated by commas: ")
     orderIDs_list = [order_id.strip(' ') for order_id in input.split(',')]
@@ -59,7 +59,7 @@ def bypass():
             db.rollback()
             print (e)
     else:
-        print "Your entry contains invalid OrderId"
+        print "Your entry contains invalid OrderId."
     cursor.close()
     db.close()
 
@@ -107,12 +107,12 @@ def notAfun():
 
 def main():
     while True:         
-        choice = raw_input('choose from: bypass or quit: ')
+        choice = raw_input('choose from: bypass, nobypass or quit: ')
         if choice == "quit":
             break   
         {
-        'display': display,
-        'bypass': bypass
+        'bypass': bypass,
+        'nobypass': nobypass
         }.get(choice, notAfun)()
 
 if __name__ == '__main__':
